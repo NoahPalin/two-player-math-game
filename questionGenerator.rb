@@ -1,4 +1,6 @@
-class QuestionGenerator   
+class QuestionGenerator
+
+  # Generate a random number between 1 and 20.
   def initialize
     @num1 = rand(1..20)
     @num2 = rand(1..20)

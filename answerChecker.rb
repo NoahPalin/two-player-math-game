@@ -5,6 +5,7 @@ class AnswerChecker
     @correctAnswer = correctAnswer
   end
 
+  # Either a correct or incorrect message.
   def validateAnswer
     if @userAnswer == @correctAnswer
       return "Great work, correct!"
@@ -13,6 +14,7 @@ class AnswerChecker
     end
   end
 
+  # Similar to validateAnswer, but used to increment the points of the correct user in main.rb.
   def pointBoolean
     if @userAnswer == @correctAnswer
       return true
