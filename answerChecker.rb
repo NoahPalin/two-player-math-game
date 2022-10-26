@@ -13,4 +13,11 @@ class AnswerChecker
     end
   end
 
+  def pointBoolean
+    if @userAnswer == @correctAnswer
+      return true
+    else 
+      return false
+    end
+  end
 end
