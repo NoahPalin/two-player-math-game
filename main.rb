@@ -13,7 +13,6 @@ class Main
   answer1.askUser
   
 
-  
 end
 
 
