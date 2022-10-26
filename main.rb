@@ -2,8 +2,6 @@ require "./questionGenerator"
 require "./promtUser"
 require "./answerChecker"
 
-
-# TO-DO loop over this process while the player's scores are less than 3.
 class Main
   @player1Score = 0
   @player2Score = 0
@@ -25,8 +23,11 @@ class Main
   #   @player1Score += 1
   # end
 
+  # counter is used to determine which player's turn it is.
   counter = 1
-  while (@player1Score < 3 || @player2Score < 3) do
+
+  while @player1Score < 3 && @player2Score < 3 do
+
     # Ask the user a question.
     question1 = QuestionGenerator.new
     question1.question
@@ -39,7 +40,8 @@ class Main
     result = AnswerChecker.new(userSubmittedAnswer, question1.answer)
     puts result.validateAnswer
 
-    # If counter is odd then it's player 1's turn. 
+    # Increment the current score for the correct player. 
+    # If counter is even then it's player 2's turn. 
     if counter % 2 == 0
       if (result.pointBoolean)
         @player2Score += 1
@@ -51,8 +53,8 @@ class Main
     end
 
     puts "P1: #{@player1Score} vs P2: #{@player2Score}"
+    puts "------ NEW TURN ------"
     counter += 1
-    puts counter
   end
 end
 
