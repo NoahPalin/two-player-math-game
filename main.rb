@@ -3,8 +3,8 @@ require "./promtUser"
 require "./answerChecker"
 
 class Main
-  @player1Score = 0
-  @player2Score = 0
+  @player1Score = 3
+  @player2Score = 3
 
   # # Ask the user a question.
   # question1 = QuestionGenerator.new
@@ -26,7 +26,7 @@ class Main
   # counter is used to determine which player's turn it is.
   counter = 1
 
-  while @player1Score < 3 && @player2Score < 3 do
+  while @player1Score > 0 && @player2Score > 0 do
 
     # If counter is even, then it's player 2's turn. 
     if counter % 2 == 0
@@ -49,17 +49,22 @@ class Main
 
     # Increment the current score for the correct player. 
     if currentTurn == 2
-      if (result.pointBoolean)
-        @player2Score += 1
+      if (!result.pointBoolean)
+        @player2Score -= 1
       end
     else
-      if (result.pointBoolean)
-        @player1Score += 1
+      if (!result.pointBoolean)
+        @player1Score -= 1
       end
     end
 
     # End game once a score of 3 points has been reached.
-    if @player1Score == 3 || @player2Score == 3
+    if @player1Score == 0 || @player2Score == 0
+      if @player1Score != 0 
+        puts "\nPlayer 1 wins with #{@player1Score}/3 lives remaining!"
+      else
+        puts "\nPlayer 2 wins with #{@player2Score}/3 lives remaining!"
+      end
       puts "------ GAME OVER ------\nGood bye!"
       break
     else
