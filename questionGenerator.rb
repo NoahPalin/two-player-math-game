@@ -6,7 +6,6 @@ class QuestionGenerator
 
   def question
     question = "What is #{@num1} plus #{@num2}?"
-    puts question
   end
 
   def answer

@@ -7,9 +7,9 @@ class AnswerChecker
 
   def validateAnswer
     if @userAnswer == @correctAnswer
-      return "Correct!"
+      return "Great work, correct!"
     else 
-      return "Wrong."
+      return "Come on, this is simple addition... wrong."
     end
   end
 

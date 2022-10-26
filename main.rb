@@ -28,9 +28,16 @@ class Main
 
   while @player1Score < 3 && @player2Score < 3 do
 
+    # If counter is even, then it's player 2's turn. 
+    if counter % 2 == 0
+      currentTurn = 2
+    else
+      currentTurn = 1
+    end
+
     # Ask the user a question.
     question1 = QuestionGenerator.new
-    question1.question
+    puts "Player #{currentTurn}: #{question1.question}"
 
     # Let the user type an answer.
     answer1 = PromtUser.new
@@ -38,11 +45,10 @@ class Main
   
     # Check if answer is correct.
     result = AnswerChecker.new(userSubmittedAnswer, question1.answer)
-    puts result.validateAnswer
+    puts "Player #{currentTurn}: #{result.validateAnswer}"
 
     # Increment the current score for the correct player. 
-    # If counter is even then it's player 2's turn. 
-    if counter % 2 == 0
+    if currentTurn == 2
       if (result.pointBoolean)
         @player2Score += 1
       end
@@ -52,9 +58,16 @@ class Main
       end
     end
 
-    puts "P1: #{@player1Score} vs P2: #{@player2Score}"
-    puts "------ NEW TURN ------"
-    counter += 1
+    # End game once a score of 3 points has been reached.
+    if @player1Score == 3 || @player2Score == 3
+      puts "------ GAME OVER ------\nGood bye!"
+      break
+    else
+      puts "P1: #{@player1Score} vs P2: #{@player2Score}"
+      puts "------ NEW TURN ------"
+      counter += 1
+    end
+
   end
 end
 
